@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Category Checker</title>
+    <style>
+        body{
+            background: lightyellow;
+            margin : 200px auto;
+            text-align: center;
+        }
+
+        .ch{
+            color: Blue;
+            font-size: 22px;
+        }
+        .teen{
+            color: orange;
+            font-size: 22px;
+        }
+        .ad{
+            color: Green;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Age Category Checker</h1>
+    <p id="result"></p>
+    <script>
+        let userAge= Number(prompt("Type your age."));
+        const checker = (age) => {
+            if(age<13) return "child";
+            else if (13<=age && age<=17) return "teenager";
+            else return "adult";
+        };
+
+        let category = checker(userAge);
+        alert("You are a " + category);
+
+        let shownResult= document.getElementById("result");
+
+        shownResult.innerText = "You're " + category;
+
+        if(category=="child") shownResult.className = "ch";
+        else if(category=="teenager") shownResult.className = "teen";
+        else shownResult.className = "ad";
+    </script>
+</body>
+</html>

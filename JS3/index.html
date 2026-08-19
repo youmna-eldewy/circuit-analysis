@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood-Based Greeting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .card {
+      background: #ffffff;
+      color: #333;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 400px;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input, select, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .preview {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+      min-height: 1.2rem;
+    }
+    .result-area {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="form-group">
+      <label for="nameInput">Name:</label>
+      <input type="text" id="nameInput" placeholder="Enter your name">
+      <div id="livePreview" class="preview">Live Preview: </div>
+    </div>
+
+    <div class="form-group">
+      <label for="moodSelect">Mood:</label>
+      <select id="moodSelect">
+        <option value="Happy">Happy</option>
+        <option value="Sad">Sad</option>
+        <option value="Excited">Excited</option>
+      </select>
+    </div>
+
+    <button id="showBtn">Show</button>
+
+    <div class="result-area">
+      <h2 id="greetingMsg"></h2>
+      <p id="moodQuote"></p>
+    </div>
+  </div>
+
+  <script>
+    // Selecting DOM elements using querySelector[cite: 2]
+    const nameInput = document.querySelector("#nameInput");
+    const livePreview = document.querySelector("#livePreview");
+    const moodSelect = document.querySelector("#moodSelect");
+    const showBtn = document.querySelector("#showBtn");
+    const greetingMsg = document.querySelector("#greetingMsg");
+    const moodQuote = document.querySelector("#moodQuote");
+
+    // Dynamic styles mapping per mood requirement[cite: 2]
+    const moodStyles = {
+      Happy: { bg: "#d4edda", color: "#155724" },
+      Sad: { bg: "#f8d7da", color: "#721c24" },
+      Excited: { bg: "#fff3cd", color: "#856404" }
+    };
+
+    // Quotes pool per mood requirement[cite: 2]
+    const moodQuotes = {
+      Happy: ["Happiness is a choice, not a result."],
+      Sad: ["It's okay to not be okay."],
+      Excited: ["Dream big and dare to fail!"]
+    };
+
+    // 1. Live preview update using keyup[cite: 2]
+    nameInput.addEventListener("keyup", function () {
+      livePreview.textContent = `Live Preview: ${nameInput.value}`;
+    });
+
+    // 2. Click logic[cite: 2]
+    showBtn.addEventListener("click", function () {
+      const nameValue = nameInput.value.trim();
+
+      // Validate name length[cite: 2]
+      if (nameValue.length < 3) {
+        alert("Please enter a valid name with at least 3 letters.");
+        greetingMsg.textContent = "";
+        moodQuote.textContent = "";
+        return;
+      }
+
+      const selectedMood = moodSelect.value;
+
+      // Display greeting message[cite: 2]
+      greetingMsg.textContent = `Hello ${nameValue}! You seem ${selectedMood} today 😊`;
+
+      // Select quote using Math.random and Math.floor[cite: 2]
+      const quotesList = moodQuotes[selectedMood];
+      const randomIndex = Math.floor(Math.random() * quotesList.length);
+      moodQuote.textContent = `"${quotesList[randomIndex]}"`;
+
+      // Apply dynamic colors using element.style[cite: 2]
+      document.body.style.backgroundColor = moodStyles[selectedMood].bg;
+      document.body.style.color = moodStyles[selectedMood].color;
+    });
+  </script>
+</body>
+</html>

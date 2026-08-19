@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Day1 Task2</title>
+    <style>
+        #box{
+            width: 900px;
+            height: 300px;
+            margin: 0 auto;
+            background-color:aliceblue;
+        }
+        #box.changed-color{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="button">Click</button>
+    <div id="box"></div>
+    <script>
+        const button = document.getElementById("button");
+        const box = document.getElementById("box");
+       button.onclick = function (){
+            button.innerText = "Clicked!";
+            box.classList.add("changed-color");
+        };
+    </script>
+</body>
+</html>

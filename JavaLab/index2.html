@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation with Function</title>
+    <style>
+
+        #welcoming{
+            color: #f5f5;
+            font-size: 26px;
+        }
+        #btn{
+            padding: 1.5px;
+            background-color: rgb(2, 134, 200);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        body{
+            text-align: center;
+            margin: 300px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="welcoming">Welcome!</h1>
+    <button id="btn" onclick="showInfo()">Click Here</button>
+
+    <script>
+        function showInfo(){
+            let userName = prompt("Type your name here");
+            let newHello = document.getElementById("welcoming");
+            newHello.innerText = "Hello, " + userName;
+            alert("Look at the new message!");
+        }
+        
+    </script>
+</body>
+</html>

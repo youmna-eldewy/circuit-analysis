@@ -1,0 +1,16 @@
+body{
+    text-align : center;
+    margin :  150px auto;
+}
+button {
+    background-color: lightskyblue;
+}
+button:hover {
+    background-color : darkblue;
+    text-decoration: underline;
+}
+.edited-text{
+    color : yellowgreen;
+    font-weight : bold;
+    font-style : oblique;
+}

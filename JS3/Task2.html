@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Greeting App</title>
+    <style>
+
+        h1{
+            text-align: center;
+        }
+
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0 auto;
+            background-color: rgb(241, 241, 241);
+            font-size: 20px;
+        }
+        .box{
+            background-color: white;
+            border-radius: 15px;
+            margin: 0 auto;
+            line-height: 30px;
+            width: 70%;
+            max-width: 500px;
+            padding: 2rem;
+        }
+
+        label {
+            margin-bottom: 3px;
+            margin-top: 3px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #007bff;
+            color:white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding : 6px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+        #userName, #chooseMood{
+            width: 70%;
+            max-width: 300px;
+            border: 1px solid;
+            box-sizing: border-box;
+            padding: 6px 6px;
+            font-size: 16px;
+        }
+
+        #livePreview{
+            font-size:16px;
+            color: rgb(102, 99, 99);
+            padding: 2px;
+        }
+
+        #result{
+          margin-top: 20px;
+          text-align: center;
+        }
+        #greetingMsg{
+            font-size: 26px;
+            color: rgb(54, 43, 43);
+            padding: 4px;
+        }
+        #suitableQuote{
+            font-size: 19px;
+            color: rgb(102, 81, 81);
+            padding: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mood-Based Greeting App</h1>
+
+    <div class = "box">
+        <label for="userName">Name : </label>
+        <input type="text" id="userName" placeholder="Enter your name">
+        <div id="livePreview">Live preview : </div>
+        <label for="chooseMood">Mood : </label>
+        <select id="chooseMood" placeholder="Choose mood">
+            <option value="Happy">Happy</option>
+            <option value="Sad">Sad</option>
+            <option value="Excited">Excited</option>
+        </select>
+        <br>
+        <button id="showBtn">Show</button>
+    </div>
+
+    <div id="result">
+        <p id="greetingMsg"></p>
+        <p id="suitableQuote"></p>
+    </div>
+
+    <script>
+
+        const moodQuotes={
+            Happy: ["Happiness is a choice, not a result." ,
+            "Joy is not in things; it is in us." ,
+            "The purpose of our lives is to be happy." ,
+            "The most simple things can bring the most happiness." , 
+            "Happiness is a direction, not a place."
+            ],
+            Sad: ["It's okay to not be okay." , 
+                "Tears come from the heart and not from the brain." ,
+                "Heavy hearts, like heavy clouds in the sky, are best relieved by the letting of a little water." ,
+                "Sadness flies away on the wings of time." , 
+                "The word 'happy' would lose its meaning if it were not balanced by sadness."
+            ],
+            Excited: ["Dream big and dare to fail!" , 
+                "Enthusiasm is the electricity of life." , 
+                "Nothing great was ever achieved without enthusiasm." , 
+                "Live life with an excitement that sees possibilities everywhere." , 
+                "With drive and a bit of talent, you can move mountains."
+            ]
+        };
+
+        const moodStyles = {
+             Happy: { bg: "#d4edda", color: "#155724" },
+            Sad: { bg: "#f8d7da", color: "#721c24" },
+            Excited: { bg: "#fff3cd", color: "#856404" }
+        };
+
+        const userName = document.querySelector('#userName');
+        const chooseMood = document.querySelector('#chooseMood');
+        const livePrevew = document.querySelector('#livePreview');
+        const showBtn = document.querySelector('#showBtn');
+        const greetingMsg = document.querySelector('#greetingMsg');
+        const suitableQuote = document.querySelector('#suitableQuote');
+
+        userName.addEventListener("keyup" , ()=>{
+            livePrevew.innerText = ("Live Preview : " + userName.value);
+        })
+
+        showBtn.addEventListener("click" , ()=>{
+
+            if(userName.value.length<3) {
+                alert("Please enter a valid name with at least 3 letters.");
+                greetingMsg.innerText = "";
+                suitableQuote.innerText = "";
+                document.body.style.color = "";
+                document.body.style.backgroundColor = "";
+            }
+
+            else{
+                const name = userName.value;
+                const mood = chooseMood.value;
+                greetingMsg.innerText = ("Hello, " + name + "! You seem " + mood.toLowerCase() + " today.");
+
+                const index = Math.floor(Math.random() * moodQuotes[mood].length);
+                suitableQuote.innerText = moodQuotes[mood][index];
+                document.body.style.color = moodStyles[mood].color;
+                document.body.style.backgroundColor = moodStyles[mood].bg;
+            }
+
+        })
+
+    </script>
+</body>
+</html>

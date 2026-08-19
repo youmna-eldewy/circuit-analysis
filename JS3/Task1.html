@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the day</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: lightskyblue;
+            margin: 150px 450px;
+        }
+        .cont{
+            text-align: center;
+            max-width: 500px;
+            font-size : 24px;
+
+        }
+        h1{
+            color : peachpuff;
+            text-align: center;
+        }
+        button{
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            text-decoration: wavy;
+            background-color: azure;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <h1>Quote Of The Day</h1>
+    </div>
+    <div class="cont">
+         <button id="quoteBtn">New Quote</button>
+         <p id="quotePart"></p>
+         <p id="authorPart"></p>
+    </div>
+    
+    <script>
+        const quoteObj = {
+        1: {quote: "Be yourself; everyone else is already taken.", author: "Oscar Wilde"},
+        2: {quote: "I'm selfish, impatient and a little insecure..." , author: "Marilyn Monroe"},
+        3: {quote: "So many books, so little time." , author: "Frank Zappa"},
+        4: {quote: "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe." , author: "Albert Einstein"},
+        5: {quote: "A room without books is like a body without a soul.", author: "Marcus Tullius Cicero"},
+        6: {quote: "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.", author: "Bernard M. Baruch"},
+        7: {quote: "You know you're in love when you can't fall asleep because reality is finally better than your dreams.", author: "Dr. Seuss"},
+        8: {quote: "You only live once, but if you do it right, once is enough.", author: "Mae West"},
+        9: {quote: "If you tell the truth, you don't have to remember anything.", author: "Mark Twain"},
+        10: {quote: "A friend is someone who knows all about you and still loves you.", author: "Elbert Hubbard"}
+    }
+        function displayRandomQuotes(){
+            const generateRandom = Math.floor(Math.random()*10 + 1);
+            const selected = quoteObj[generateRandom];
+            document.querySelector("#quotePart").innerText = selected.quote;
+            document.querySelector("#authorPart").innerText = selected.author;
+        };
+
+        document.querySelector('#quoteBtn').addEventListener('click', displayRandomQuotes);
+    </script>
+
+</body>
+</html>

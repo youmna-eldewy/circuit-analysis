@@ -1,0 +1,28 @@
+form textarea{
+    padding: 20px;
+    width: 90%;
+    margin: 50px;
+    font-style: oblique;
+
+}
+form input{
+    padding: 20px;
+    width: 50%;
+    margin: 50px;
+    font-style: oblique;
+
+}
+form label{
+    display:block;
+    margin:6px;
+}
+form button{
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-family: monospace;
+}
+form button:hover{
+    background-color: #0056b3;
+}
